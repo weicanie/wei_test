@@ -14,9 +14,11 @@ const Detail = memo(() => {
   }, shallowEqual)
   const indexInDataList = useParams().index
   const clickHandler = () => {
+    window.scrollTo(0,0)
     setIsBrowserShow(!isBrowserShow)
   }
   const isBrowserShow_pass = (input) => {
+    window.scrollTo(0,0)
     setIsBrowserShow(input)
   }
   //控制app-header的展示
@@ -26,11 +28,11 @@ const Detail = memo(() => {
     return () => {
       dispatch(setIsFixed(true))
     }
-  },[])
+  },[dispatch])
 
   useEffect(() => {
     dispatch(setPageName('detail'))
-  },[])
+  },[dispatch])
 
   // console.log('Detail', isBrowserShow)
   return (

@@ -1,4 +1,4 @@
-import React, { memo, useRef, useState } from 'react'
+import React, { memo, useState } from 'react'
 import SlideShowWrapper from './style'
 import Indicator from './c-cpns/indicator'
 import Pictrues from './c-cpns/picture'

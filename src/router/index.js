@@ -1,4 +1,3 @@
-import Demo from '@/views/demo'
 import {lazy} from 'react'
 import {Navigate} from 'react-router'
 const Home = lazy(() => import('@/views/home'))
@@ -22,10 +21,6 @@ const routes = [
     path:'/detail/:index',
     element:<Detail/>
   },
-  {
-    path:'/demo',
-    element:<Demo/>
-  }
 ]
 
 

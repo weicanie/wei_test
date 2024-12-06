@@ -1,5 +1,4 @@
 import {configureStore} from '@reduxjs/toolkit'
-
 import discountReducer from './modules/discount'
 import recommendReducer from './modules/recommend'
 import longforReducer from './modules/longfor'

@@ -1,12 +1,13 @@
 import MoreWrapper from './style'
 import React, { memo ,useEffect, useState} from 'react'
 import useFetchData from '@/hooks/useFetchData'
-import HomeSectionV3 from '@/components/home-section-more'
 import { fetchEntireDataAction } from '@/store/modules/entire'
-import PaginationMUI from './c-cpts/pagination'
-import Filter from './c-cpts/filter'
+import PaginationMUI from './c-cpns/pagination'
+import Filter from './c-cpns/filter'
 import { useDispatch } from 'react-redux'
 import { setBgColor, setIsOut, setPageName } from '@/store/modules/header'
+import SectionItems from '@/components/section-items'
+import SectionHeader from '@/components/section-header'
 
 const More = memo((props) => {
   const [data, setData] = useState(undefined)
@@ -32,18 +33,28 @@ const More = memo((props) => {
       }
     },50)
   }, [])
+
+  const roomData = data?.list
+  const header = data?.totalCount
+  const showWidth = '20%'
+  const showCount = 20
   return (
     <MoreWrapper>
       <div className = "placeholder"></div>
       <div className = 'more'>
         <Filter/>
         {data&&
-          <HomeSectionV3
-            roomData = {data.list} 
-            header = {data.totalCount}
-            showWidth = {'20%'}
-            showCount = {20}
-          />
+          [
+            <SectionHeader
+              header ={header}
+            />,
+            <SectionItems
+              roomData = {roomData} 
+              showWidth = {showWidth}
+              showCount = {showCount}
+              isViewMore={true}
+            />,
+          ]
         }
         {data&&
           <PaginationMUI
