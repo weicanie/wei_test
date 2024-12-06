@@ -1,5 +1,4 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import fetchLongforData from '@/services/modules/home-longfor';
 import fetchGoodpriceData from '@/services/modules/home-goodprice';
 const fetchGoodpriceDataAction = createAsyncThunk('goodprice', async () => {
   const data = await fetchGoodpriceData();

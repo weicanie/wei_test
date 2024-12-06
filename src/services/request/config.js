@@ -15,7 +15,7 @@ const config2 = {
   baseURL:"http://codercba.com:1888/airbnb/api",
   timeout:10000,
 }
-const instance2 = new WeiRequester(config1)
+const instance2 = new WeiRequester(config2)
 //响应拦截器
 instance2.setResponseInterceptor((res) => {
   return res.data

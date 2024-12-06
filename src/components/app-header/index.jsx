@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo } from 'react'
 import HeaderWrapper from './style'
 import SearchBar from './c-cpns/search-bar'
 import Profile from './c-cpns/profile'

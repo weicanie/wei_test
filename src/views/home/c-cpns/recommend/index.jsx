@@ -1,4 +1,4 @@
-import React, { memo ,useEffect, useState} from 'react'
+import React, { memo , useState} from 'react'
 import useFetchData from '@/hooks/useFetchData'
 // import HomeSection from '@/components/home-section'
 import { fetchRecommendDataAction } from '@/store/modules/recommend'
@@ -7,19 +7,6 @@ import SectionTabBar from '@/components/section-tabBar'
 import SectionItems from '@/components/section-items'
 import SectionFooter from '@/components/section-footer'
 import SectionHeader from '@/components/section-header'
-
-const Recommend2 = memo((props) => {
-  const [data, setData] = useState({})
-  useFetchData(setData, fetchRecommendDataAction,'recommend','recommendData');
-  return (
-    <RecommendWrapper>
-      {/* <HomeSection
-        roomData = {data.dest_list} 
-        header = {[data.title, data.subtitle]}
-      /> */}
-    </RecommendWrapper>
-  )
-})
 
 const Recommend = memo((props) => {
   const [data, setData] = useState({})

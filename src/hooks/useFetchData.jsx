@@ -10,7 +10,7 @@ function useFetchData(setData, acion, rStr,sStr,offset=0) {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(acion(offset))
-  }, [offset])
+  }, [acion, dispatch, offset])
 
   const {data} = useSelector((state) => {
     return {

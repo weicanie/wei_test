@@ -1,9 +1,10 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useRef, useState } from 'react'
 import ScrollViewWrapper from './style'
 import classNames from 'classnames'
 import IconArrowLeft from '@/assets/svg/icon-arrow-left'
 import IconArrowRight from '@/assets/svg/icon-arrow-right'
 import Bottom from '@/components/section-tabBar/c-cpns/city-bottom'
+import Wei_useMemo from '@/hooks/useMemo_wei'
 //实现了响应窗口大小。但实际网站是固定宽度
 const ScrollView = memo((props) => {
   const [leftShow, setLeftShow] = useState(false)
@@ -25,12 +26,13 @@ const ScrollView = memo((props) => {
   const barRef = useRef()
   const barWidth = barRef.current?.scrollWidth
   
-  useEffect(() => {
+  //一开始时是否显示右按钮
+  new Wei_useMemo().wei_useMemo(() => {
     const barWidth = barRef.current?.scrollWidth
     if (barWidth > tabBarInnerWidth) {
       setRightShow(!rightShow)
     }
-  },[])
+  })//只执行第一次
 
   function rightClickHandler() {
     if (!leftShow) {

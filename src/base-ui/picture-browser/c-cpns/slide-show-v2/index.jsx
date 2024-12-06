@@ -1,11 +1,11 @@
-import React, { memo, useRef, useState } from 'react'
+import React, { memo, useState } from 'react'
 import SlideShowWrapper from './style'
 import IndicatorV2 from './c-cpns/indicator-v2'
 import Pictrues from './c-cpns/picture'
 import IconArrowLeft from '@/assets/svg/icon-arrow-left'
 import IconArrowRight from '@/assets/svg/icon-arrow-right'
 import {step} from './c-cpns/indicator-v2/style'
-import { TransitionGroup, CSSTransition, SwitchTransition } from "react-transition-group"
+import { CSSTransition } from "react-transition-group"
 
 const slideCount = 7
 const SlideShowV2 = memo((props) => {
@@ -18,6 +18,7 @@ const SlideShowV2 = memo((props) => {
   const [isRightClick, setIsRightClick] = useState(false)
 
   const [curIndex, setCurIndex] = useState(0)
+  //是否水平滚动（向左/右），比如没到中间就不滚
   const [isTranslateRight, setIsTranslateRight] = useState(false)
   const [isTranslateLeft, setIsTranslateLeft] = useState(false)
   const [move,setMove] = useState(0)
@@ -56,7 +57,7 @@ const SlideShowV2 = memo((props) => {
     setIsRightClick(true)
   }
 
-  console.log('isIndicatorShow', isIndicatorShow)
+  // console.log('isIndicatorShow', isIndicatorShow)
   return (
     <SlideShowWrapper>
       <div 
@@ -71,7 +72,6 @@ const SlideShowV2 = memo((props) => {
         isLeftClick={isLeftClick}
         isRightClick={isRightClick}
       />
-
 
       {
         <CSSTransition
@@ -93,21 +93,6 @@ const SlideShowV2 = memo((props) => {
         </div>
         </CSSTransition>
       }
-
-
-      {/* {isIndicatorShow&&
-        <IndicatorV2 
-          curIndex={curIndex}
-          totalCount={totalCount}
-          isTranslateRight_pass={isTranslateRight_pass}
-          isTranslateLeft_pass={isTranslateLeft_pass}
-          move = {move}
-          step = {step}
-          pictureData={pictureData}
-          slideCount= {slideCount}
-      />
-      } */}
-
 
       {isIndicatorShow&&
         (<div 

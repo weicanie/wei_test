@@ -1,7 +1,8 @@
-import React, { memo, useEffect, useState} from 'react'
+import React, { memo } from 'react'
 import IndicatorWrapper from './style'
 import classNames from 'classnames'
-
+import Wei_useMemo from '@/hooks/useMemo_wei'
+const weiMemo = new Wei_useMemo()
 // 生成一个和图片数量相同的圆点列表，一起移动。
 // 一次只显示7个圆点。
 //中间圆点突出显示的本质：光标移动时同时平移
@@ -14,7 +15,7 @@ const Indicator = memo((props) => {
   const {curIndex, totalCount, move, isTranslateRight_pass, isTranslateLeft_pass,step} = props
   const arr = Array(totalCount).fill(1)
   //控制是否中间圆点突出显示：将是否translate传给父组件
-  useEffect(() => {
+  weiMemo.wei_useMemo(() => {
     //关键————平移条件：已到中间&&当前方向没到底。
     //是否平移是互斥的
     if ((curIndex >= 3 && curIndex <= totalCount-4) && (move > -(totalCount-7)*step)) {
@@ -27,7 +28,7 @@ const Indicator = memo((props) => {
     } else {
       isTranslateLeft_pass(false)
     }
-  }, [curIndex])
+  }, curIndex)
   return (
     <IndicatorWrapper move = {move}>
       <div className="list_container">

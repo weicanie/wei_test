@@ -1,14 +1,15 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useState } from 'react'
 import PictruesWrapper from './style'
 import { useNavigate } from 'react-router'
-
+import Wei_useMemo from '@/hooks/useMemo_wei'
+const weiMemo = new Wei_useMemo()
 const Pictrues = memo((props) => {
   const {pictureData, curIndex, indexInDataList, totalCount, isLeftClick, isRightClick} = props
   const picWidth = 212
   const [move, setMove] = useState(0)
   const navigate = useNavigate()
 
-  useEffect(() => {
+  weiMemo.wei_useMemo(() => {
     if (isLeftClick) {
       if (move === 0) {
         setMove(-picWidth*(totalCount - 1))
@@ -24,7 +25,7 @@ const Pictrues = memo((props) => {
         setMove(move - picWidth)
       }
     }
-  },[curIndex])
+  },curIndex)
 
   return (
     <PictruesWrapper move={move}>

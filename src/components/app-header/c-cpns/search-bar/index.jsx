@@ -1,4 +1,4 @@
-import React, { memo , useEffect, useState} from 'react'
+import React, { memo , useEffect, useRef} from 'react'
 import SearchBarrWrapper from './style'
 import IconSearchBar from '@/assets/svg/icon-search-bar'
 import { CSSTransition } from 'react-transition-group'
@@ -20,40 +20,37 @@ const SearchBar = memo((props) => {
       dispatch(setIsOut(payload))
     }
   }
-  const windowScrollHandler = debounce(
+  const handlerRef = useRef()
+  handlerRef.current = debounce(
     () => {
-      if (window.scrollY < 5 ) {
-        console.log('windowScrollHandler', pageName)
-        if (pageName==='home') {
-          dispatch(setIsOut(true))
-          dispatch(setBgColor('transparent'))
-        }
+    if (window.scrollY < 5 ) {
+      if (pageName==='home') {
+        dispatch(setIsOut(true))
+        dispatch(setBgColor('transparent'))
       }
-      if (window.scrollY >= 5 ) {
-          dispatch(setIsOut(false))
-          dispatch(setBgColor('white'))
-      }
+    }
+    if (window.scrollY >= 5 ) {
+        dispatch(setIsOut(false))
+        dispatch(setBgColor('white'))
+    }
     },50
   )
+  const windowScrollHandler = handlerRef.current 
   useEffect(() => {
     window.addEventListener('scroll',windowScrollHandler)
     return () => {
       window.removeEventListener('scroll', windowScrollHandler)
     }
     //pageName改变时，调用cleaner取消上一个事件处理程序，注册这次的事件处理程序
-  },[pageName])
+  },[pageName, windowScrollHandler])
 
   // 首次挂载也执行动画 
-  const [isMounted, setIsMounted] = useState(false)
   useEffect(() => {
     if (window.scrollY === 0) {
       dispatch(setIsOut(true))
       dispatch(setBgColor('transparent'))
-      setIsMounted(true)
     }
-  }, [])
-
-
+  }, [dispatch])
 
   return (
     <SearchBarrWrapper isOut={isOut} bgColor={bgColor}>
